@@ -178,6 +178,26 @@ int main() {
 			char ch;
 			cin >> ch;
 
+			switch (ch) {
+			case '1':
+				obj.addnote();
+				break;
+			case '2':
+				obj.hapus();
+				break;
+			case '3':
+				obj.ascending();
+				break;
+			case '4':
+				obj.descending();
+				break;
+			case '5':
+				obj.searchData();
+				break;
+			case '6':
+				return 0;
+			}
+
 		}
 	}
 }
