@@ -59,22 +59,26 @@ void DoubleLinkedList::addnote() {
 	while (current->next != NULL && nim == current->next->noMhs) {
 		current = current->next;
 
-	if (current->next != NULL && nim == current->next->noMhs) {
-		cout << "\nDuplicate roll numbers not allowed" << endl;
-		return;
-	}
+		if (current->next != NULL && nim == current->next->noMhs) {
+			cout << "\nDuplicate roll numbers not allowed" << endl;
+			return;
+		}
 
-	newNode->next = current->next;
-	newNode->prev = current;
-	if (current->next != NULL)
-		current->next->prev = newNode;
-	current->next = newNode;
+		newNode->next = current->next;
+		newNode->prev = current;
+		if (current->next != NULL)
+		{
+			current->next->prev = newNode;
+			current->next = newNode;
+		}
+	}
 }
 
-
-
-
-
-	
-
+bool DoubleLinkedList::search(int rollNo, Node * *previous, Node * *current) {
+	*previous = *current = START;
+	while (*current != NULL && rollNo != (*current)->noMhs) {
+		*previous = *current;
+		*current = (*current)->next;
+	}
+	return (*current != NULL);
 }
