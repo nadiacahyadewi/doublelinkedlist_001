@@ -56,7 +56,7 @@ void DoubleLinkedList::addnote() {
 	}
 
 	Node* current = START;
-	while (current->next != NULL && nim == current->next->noMhs) {
+	while (current->next != NULL && nim == current->next->noMhs) 
 		current = current->next;
 
 		if (current->next != NULL && nim == current->next->noMhs) {
@@ -67,11 +67,8 @@ void DoubleLinkedList::addnote() {
 		newNode->next = current->next;
 		newNode->prev = current;
 		if (current->next != NULL)
-		{
 			current->next->prev = newNode;
-			current->next = newNode;
-		}
-	}
+		current->next = newNode;
 }
 
 bool DoubleLinkedList::search(int rollNo, Node * *previous, Node * *current) {
@@ -81,4 +78,21 @@ bool DoubleLinkedList::search(int rollNo, Node * *previous, Node * *current) {
 		*current = (*current)->next;
 	}
 	return (*current != NULL);
+}
+
+bool DoubleLinkedList::deleteNode(int rollNo) {
+	Node* previous, * current;
+	previous = current = NULL;
+	if (search(rollNo, &previous, &current) == false)
+		return false;
+
+	if (current->next != NULL)
+		current->next->prev = previous;
+	if (previous != NULL)
+		previous->next = current->next;
+	else
+		START = current->next;
+
+	delete current;
+	return true;
 }
